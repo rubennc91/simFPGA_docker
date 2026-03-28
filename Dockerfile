@@ -28,17 +28,14 @@ RUN sed -i 's/LIBS = -L$(ROS_LIB_DIR) -lroscpp/LIBS = -L$(ROS_LIB_DIR) -lroscpp 
 # 5. Ejecutar la compilación
 RUN make clean && make -j$(nproc)
 
-# 6. PREPARAR ROS WORKSPACE
+
+# 4. PREPARAR ROS WORKSPACE
 RUN mkdir -p /root/paper_simfpga_ws/src
 WORKDIR /root/paper_simfpga_ws/src
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash; catkin_init_workspace"
 
-# 7. Copiamos el paquete principal
-RUN cp -r /root/simFPGA_docker/sim_fpga/paper-FPGA_Robotics-sim-FPGA/paper_ros_ws/diffdrive_cam_bot /root/paper_simfpga_ws/src/
-
-# 8. AÑADIMOS LAS DEPENDENCIAS DE ESCENARIOS (MUNDOS)
-RUN git clone https://github.com/aws-robotics/aws-robomaker-small-house-world.git
-RUN git clone https://github.com/aws-robotics/aws-robomaker-hospital-world.git
+# COPIA TODO DESDE TU REPO (Incluyendo el escenario de AWS y el robot)
+RUN cp -r /root/simFPGA_docker/sim_fpga/paper-FPGA_Robotics-sim-FPGA/paper_ros_ws/* /root/paper_simfpga_ws/src/
 
 WORKDIR /root/paper_simfpga_ws
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash; catkin_make"
