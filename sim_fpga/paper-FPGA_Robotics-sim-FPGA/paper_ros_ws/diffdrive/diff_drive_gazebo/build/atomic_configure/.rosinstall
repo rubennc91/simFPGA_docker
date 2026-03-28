@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/ruben/JdeRobot/2017-tfg-richard-nicklas/ROS/diffdrive/diff_drive_gazebo/build/devel/setup.sh
