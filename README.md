@@ -25,11 +25,11 @@ Traditional FPGA-robotics development often requires physical hardware or fragme
 
 
 ###
-    ```bash
-    	git clone https://github.com/rubennc91/simFPGA_docker.git
-    	cd simFPGA_docker
-    	docker build -t fpga_sim_image .
-    ```
+```bash
+	git clone https://github.com/rubennc91/simFPGA_docker.git
+	cd simFPGA_docker
+	docker build -t fpga_sim_image .
+```
 
 ### Option A: Automation Script (Daily Use)
 This is the fastest way to get everything up and running with multiple terminal tabs.
@@ -99,7 +99,7 @@ Use this option if you have modified the `Dockerfile`, added new system dependen
     * **ROS/Gazebo Terminal:**
         ```bash
         docker exec -it robot_ruben bash -c "source /root/paper_simfpga_ws/devel/setup.bash && roslaunch diffdrive_cam_bot main.launch"
-
+		```
 ---
 
 ## The Development Cycle
@@ -110,16 +110,17 @@ Thanks to the volume mapping, you don't need to edit files inside the container:
 3.  **Compile:** In the Verilator terminal (inside Docker), run:
     ```bash
     make -j$(nproc) && ./obj_dir/Vdesign_top
-
+	```
 ---
 
 ## Project Directory Structure
-    ``` 
-    .
-    ├── Dockerfile
-    ├── docker-compose.yml
-    ├── run_sim.sh
-    └── sim_fpga/
-        └── paper-FPGA_Robotics-sim-FPGA/
-            ├── paper_verilator_ws/  # Verilator & RTL code
-            └── 
+```text
+.
+├── Dockerfile
+├── docker-compose.yml
+├── run_sim.sh
+└── sim_fpga/
+	└── paper-FPGA_Robotics-sim-FPGA/
+		├── paper_verilator_ws/  # Verilator & RTL code
+		└── paper_ros_ws/        # ROS Packages (Robot & Worlds)
+```
