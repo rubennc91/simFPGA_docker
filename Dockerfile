@@ -26,9 +26,6 @@ RUN mkdir -p /root/paper_simfpga_ws/src
 WORKDIR /root/paper_simfpga_ws/src
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash; catkin_init_workspace"
 
-# Copy packages from the cloned repo to the active workspace
-RUN cp -r /root/simFPGA_docker/sim_fpga/paper-FPGA_Robotics-sim-FPGA/paper_ros_ws/* /root/paper_simfpga_ws/src/
-
 WORKDIR /root/paper_simfpga_ws
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash; catkin_make"
 

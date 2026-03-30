@@ -6,7 +6,7 @@ xhost +local:docker
 # 2. Limpiar
 docker rm -f fpga_sim_container 2>/dev/null
 
-# 3. Lanzar el motor (IMPORTANTE: Nombre de imagen fpga_sim_image)
+# 3. Lanzar el motor
 echo "🚀 Starting container..."
 docker run -d --name fpga_sim_container --rm \
     --net=host \
@@ -18,7 +18,21 @@ docker run -d --name fpga_sim_container --rm \
     fpga_sim_image \
     bash -c "source /opt/ros/noetic/setup.bash && roscore"
 
-sleep 3 # Damos un poco más de tiempo
+sleep 3 # Esperamos a que el contenedor esté estable
+
+# --- NUEVA SECCIÓN: VINCULACIÓN EN VIVO (MANTENIMIENTO ROS) ---
+echo "🔗 Linking ROS workspace and compiling..."
+docker exec -it fpga_sim_container bash -c "
+    # Limpiamos el src interno por si acaso
+    rm -rf /root/paper_simfpga_ws/src/* && \
+    # Creamos enlaces simbólicos (accesos directos) a tu PC real
+    ln -s /root/simFPGA_docker/sim_fpga/paper-FPGA_Robotics-sim-FPGA/paper_ros_ws/* /root/paper_simfpga_ws/src/ && \
+    # Compilamos para que ROS reconozca los paquetes
+    cd /root/paper_simfpga_ws && \
+    source /opt/ros/noetic/setup.bash && \
+    catkin_make
+"
+# --------------------------------------------------------------
 
 # 4. Pestaña Verilator
 echo "🖥️ Opening Verilator..."

@@ -66,11 +66,11 @@ Best for persistent development.
 2.  **Access the working terminals:**
     * **Verilator Terminal:**
         ```bash
-        docker exec -it robot_ruben bash -c "cd /root/simFPGA_docker/sim_fpga/paper-FPGA_Robotics-sim-FPGA/paper_verilator_ws && bash"
+        docker exec -it fpga_sim_container bash -c "cd /root/simFPGA_docker/sim_fpga/paper-FPGA_Robotics-sim-FPGA/paper_verilator_ws && bash"
         ```
     * **ROS/Gazebo Terminal:**
         ```bash
-        docker exec -it robot_ruben bash -c "source /root/paper_simfpga_ws/devel/setup.bash && roslaunch diffdrive_cam_bot main.launch"
+        docker exec -it fpga_sim_container bash -c "source /root/paper_simfpga_ws/devel/setup.bash && roslaunch diffdrive_cam_bot main.launch"
         ```
 ### Option C: Clean Build & Run (Full Reset Flow)
 Use this option if you have modified the `Dockerfile`, added new system dependencies, or want to ensure a completely clean environment synchronized with the latest GitHub state.
@@ -94,12 +94,17 @@ Use this option if you have modified the `Dockerfile`, added new system dependen
 3.  **Access the working terminals:**
     * **Verilator Terminal:**
         ```bash
-        docker exec -it robot_ruben bash -c "cd /root/simFPGA_docker/sim_fpga/paper-FPGA_Robotics-sim-FPGA/paper_verilator_ws && bash"
+        docker exec -it fpga_sim_container bash -c "cd /root/simFPGA_docker/sim_fpga/paper-FPGA_Robotics-sim-FPGA/paper_verilator_ws && bash"
         ```
     * **ROS/Gazebo Terminal:**
         ```bash
+<<<<<<< HEAD
+        docker exec -it fpga_sim_container bash -c "source /root/paper_simfpga_ws/devel/setup.bash && roslaunch diffdrive_cam_bot main.launch"
+
+=======
         docker exec -it robot_ruben bash -c "source /root/paper_simfpga_ws/devel/setup.bash && roslaunch diffdrive_cam_bot main.launch"
 		```
+>>>>>>> d1a5bd137233a5135b1c408830069a5783b5a562
 ---
 
 ## The Development Cycle
