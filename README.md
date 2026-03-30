@@ -98,13 +98,8 @@ Use this option if you have modified the `Dockerfile`, added new system dependen
         ```
     * **ROS/Gazebo Terminal:**
         ```bash
-<<<<<<< HEAD
         docker exec -it fpga_sim_container bash -c "source /root/paper_simfpga_ws/devel/setup.bash && roslaunch diffdrive_cam_bot main.launch"
-
-=======
-        docker exec -it robot_ruben bash -c "source /root/paper_simfpga_ws/devel/setup.bash && roslaunch diffdrive_cam_bot main.launch"
-		```
->>>>>>> d1a5bd137233a5135b1c408830069a5783b5a562
+	```
 ---
 
 ## The Development Cycle
